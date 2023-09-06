@@ -2,35 +2,39 @@ package com.awp.lab1.database;
 
 import com.awp.lab1.entity.User;
 import com.awp.lab1.exception.UserAlreadyExistsException;
-import com.awp.lab1.exception.UserDoesNotExists;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class UserTable {
     private static final Map<String, User> users = new HashMap<>();
 
     public static void addUser(User user) throws UserAlreadyExistsException{
-        if (isUserExists(user.getLogin())){
+        if (isUserExists(user)){
             throw new UserAlreadyExistsException(user);
         }
 
         users.put(user.getLogin(), user);
     }
 
-    private static boolean isUserExists(String login){
-        return users.containsKey(login);
+    private static boolean isUserExists(User user){
+        return users.containsKey(user.getLogin());
     }
 
     private static boolean isPasswordCorrect(User user){
         return users.get(user.getLogin()).getPassword().equals(user.getPassword());
     }
 
-    private static boolean login(User user) throws UserDoesNotExists{
-        if (!isUserExists(user.getLogin())){
-            throw new UserDoesNotExists(user);
+    private static User getUserFromDatabase(String login){
+        return users.get(login);
+    }
+
+    public static Optional<User> login(User user){
+        if (!isUserExists(user) && isPasswordCorrect(user)){
+            return Optional.empty();
         }
 
-        return users.get(user.getLogin()).getPassword().equals(user.getPassword());
+        return Optional.of(getUserFromDatabase(user.getLogin()));
     }
 }
