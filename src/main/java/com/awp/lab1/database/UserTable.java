@@ -11,7 +11,7 @@ public class UserTable {
     private static final Map<String, User> users = new HashMap<>();
 
     static {
-        users.put("admin", new User("admin", "admin"));
+        users.put("admin", new User("admin", "admin", true));
     }
 
     public static void addUser(User user) throws UserAlreadyExistsException{
