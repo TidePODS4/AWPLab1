@@ -12,11 +12,11 @@ import java.util.Date;
 public class DateServlet extends HttpServlet {
     private Date date;
 
-    /*@Override
+    @Override
     public void init() throws ServletException {
         super.init();
         date = new Date();
-    }*/
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
