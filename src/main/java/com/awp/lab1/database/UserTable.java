@@ -10,6 +10,10 @@ import java.util.Optional;
 public class UserTable {
     private static final Map<String, User> users = new HashMap<>();
 
+    static {
+        users.put("admin", new User("admin", "admin"));
+    }
+
     public static void addUser(User user) throws UserAlreadyExistsException{
         if (isUserExists(user)){
             throw new UserAlreadyExistsException(user);
