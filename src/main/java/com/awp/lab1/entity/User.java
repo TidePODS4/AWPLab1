@@ -6,8 +6,6 @@ import lombok.Setter;
 
 @Data
 public class User {
-    @Setter(AccessLevel.PROTECTED)
-    private Integer id;
     private String login;
     private String password;
 }
