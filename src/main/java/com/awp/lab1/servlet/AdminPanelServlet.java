@@ -15,7 +15,7 @@ import java.io.IOException;
 public class AdminPanelServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("views/add-user.jsp")
+        req.getRequestDispatcher("views/admin-panel.jsp")
             .forward(req, resp);
     }
 
