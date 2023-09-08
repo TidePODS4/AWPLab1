@@ -23,10 +23,14 @@ public class UserTable {
     }
 
     private static boolean isUserExists(User user){
+        if (user.getLogin() == null)
+            return false;
         return users.containsKey(user.getLogin());
     }
 
     private static boolean isPasswordCorrect(User user){
+        if (user.getPassword() == null)
+            return false;
         return users.get(user.getLogin()).getPassword().equals(user.getPassword());
     }
 
@@ -35,10 +39,9 @@ public class UserTable {
     }
 
     public static Optional<User> login(User user){
-        if (!isUserExists(user) && isPasswordCorrect(user)){
-            return Optional.empty();
+        if (isUserExists(user) && isPasswordCorrect(user)){
+            return Optional.of(getUserFromDatabase(user.getLogin()));
         }
-
-        return Optional.of(getUserFromDatabase(user.getLogin()));
+        return Optional.empty();
     }
 }
