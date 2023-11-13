@@ -14,8 +14,8 @@ ext {
     junitVersion = '5.8.2'
 }
 
-sourceCompatibility = "10"
-targetCompatibility = "10"
+sourceCompatibility = "16"
+targetCompatibility = "16"
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
@@ -23,7 +23,7 @@ tasks.withType(JavaCompile) {
 
 dependencies {
     compileOnly('javax.servlet:javax.servlet-api:4.0.1')
-    implementation('org.thymeleaf:thymeleaf:3.0.12.RELEASE')
+    implementation 'javax.servlet:jstl:1.2'
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
