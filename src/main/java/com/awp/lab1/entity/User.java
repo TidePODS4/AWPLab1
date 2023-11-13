@@ -33,7 +33,7 @@ public class User {
         this.password = password;
     }
 
-    public boolean isAdmin() {
+    public boolean getAdmin() {
         return isAdmin;
     }
 
